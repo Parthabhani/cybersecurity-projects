@@ -17,7 +17,7 @@ def test_sql_injection(url):
 def test_xss(url):
     print("[*] Testing for XSS vulnerability...")
     payload = "<script>alert('XSS')</script>"
-    response = requests.get(url, params={"q": payload})  # Assume 'q' is the query parameter
+    response = requests.get(url, params={"q": payload})  
     if payload in response.text:
         print(f"[+] Potential XSS found with payload: {payload}")
         return True
@@ -28,7 +28,7 @@ def test_xss(url):
 def test_csrf(url):
     print("[*] Testing for CSRF vulnerability...")
     response = requests.get(url)
-    if 'csrf_token' not in response.text:  # CSRF token should be checked
+    if 'csrf_token' not in response.text:  
         print("[+] CSRF token not found. Application may be vulnerable to CSRF attacks.")
         return True
     print("[-] CSRF token is present. No CSRF vulnerability detected.")
